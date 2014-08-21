@@ -38,6 +38,7 @@ var GulpNgGenerator = yeoman.generators.Base.extend({
     this.mkdir('app');
     this.copy('app/_app.css', 'app/app.css');
     this.copy('app/_app.js','app/app.js');
+    this.copy('app/_routes.js','app/routes.js');
     this.copy('app/_app_controller.js','app/app_controller.js');
     this.copy('app/_app_controller_test.js','app/app_controller_test.js');
     this.copy('app/_index.html','app/index.html');

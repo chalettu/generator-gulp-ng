@@ -7,7 +7,7 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
   init: function () {
     console.log('You called the controller subgenerator with the argument ' + this.name + '.');
 
-   this.js_controller_function=this.name+'_Controller';
+   this.js_controller_function=this.name+'Ctrl';
 //take the controller name and lowercase it for the filename
 	var filename=this.name.toLowerCase()+'.js';
 
@@ -20,7 +20,7 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
         var controller = this.engine(controller_template , context);
 
 
-this.write("www/js/controllers/"+filename, controller);
+this.write("app/"+this.name+"/"+filename, controller);
 
 //this.generateControllerIncludes();
 
@@ -88,6 +88,11 @@ askFor: function () {
       	this.route_path= props.route_path;
       }
 
+      if (props.createPartial===true)
+      {
+        var partial_name="app/"+this.name+"/"+this.name+".html";
+        this.write(partial_name, "/*PARTIAL FOR"+this.name+" CONTROLLER*/");
+      }
 
       done();
     }.bind(this));

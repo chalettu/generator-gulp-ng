@@ -1,7 +1,16 @@
-function <%= name %>_Controller($scope,$rootScope,$timeout,$stateParams)
-{
+(function(){
+  'use strict';
+
+
+  	angular.module('myapp-main')
+    .config(function () {
+    })
+    .controller('<%= name %>Ctrl', function ($scope) {
+     
 
 
 
-	
-}
+
+    });
+
+})();
