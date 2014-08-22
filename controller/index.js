@@ -10,11 +10,14 @@ var ControllerGenerator = yeoman.generators.NamedBase.extend({
    this.js_controller_function=this.name+'Ctrl';
 //take the controller name and lowercase it for the filename
 	var filename=this.name.toLowerCase()+'.js';
+var bower = this.dest.readJSON('bower.json');
 
 	var controller_template = this.read("_controller.js");
+  this.appname=bower.name;
 
 	    var context = {
-            name: this.name
+            name: this.name,
+            appname:bower.name
         };
    
         var controller = this.engine(controller_template , context);
@@ -91,50 +94,51 @@ askFor: function () {
       if (props.createPartial===true)
       {
         var partial_name="app/"+this.name+"/"+this.name+".html";
-        this.write(partial_name, "/*PARTIAL FOR"+this.name+" CONTROLLER*/");
+        this.write(partial_name, "/* PARTIAL FOR "+this.name+" CONTROLLER */");
       }
 
       done();
     }.bind(this));
   },
-  generateControllerIncludes: function(){
-  	this.log(chalk.magenta('You\'re in the includes method.'));
-	var fileNames=[];
-	var files = this.expand("www/js/controllers/*.js");
-	 for (var i = 0; i < files.length; i++) {
-        var name = this._.chain(files[i]).strRight("www/").value();
-   this.controller_name=name;
-   //this.log(chalk.magenta(name));
-	   fileNames.push(name);
-
-
-    }
-    var fileString="'"+this.implode("','",fileNames)+"'";
- 	this.log(chalk.magenta(fileString));
-  	//head.load("file1.js", "file2.js");
-  	var loadString="head.load("+fileString+");";
-
- 
-    this.write("www/js/includes/angular_controllers.js", loadString);
-   var comment_string="//Generated for "+this.controller_name +" controller "+'\n <div>Default content for new route</div>';
-   this.write("www/partials/"+this.name+".html", comment_string);
-
-},
 generateRoutingRule:function()
 {
 //first check to see what was set for the route
 //var routes = this.read("/www/js/app.js");
+var slugged_name=this._.slugify(this.name);
 var hook   = ';//END OF ROUTES',
-    path= 'www/js/app.js',
+    path= 'app/routes.js',
     file  = this.readFileAsString(path),
-    insert=' .state("'+this.name+'", {url: "'+this.route_path+'", templateUrl: "partials/'+ this.name +'.html",controller: "'+this.js_controller_function+'"})';
+    insert=' .state("'+this.name+'", {url: "'+this.route_path+'", templateUrl:\''+ slugged_name+'/'+slugged_name +'.html\',controller: "'+this.js_controller_function+'"})';
+
+
+
 //    console.log(this.route_path);
+//searchText.match(/angular.module\('.*', (\[.*\])/i)
 //file = this.readFileAsString(path);
 //routes+="testing";
-
+//JSON.stringify(yourArray);
  
 this.write(path, file.replace(hook, '\n'+insert+hook));
 
+
+//open app.js
+  var app_file="app/app.js";
+  var module_name=this.appname+'-'+this.name;
+
+  file  = this.readFileAsString(app_file);
+
+  var matches=file.match(/angular.module\('.*', (\[.*\])/i);
+  var ang_modules_str=matches[1];
+ 
+  if (ang_modules_str.indexOf(module_name) ==-1) {
+
+      var ang_modules_arr=JSON.parse(ang_modules_str); 
+      ang_modules_arr.push(module_name);
+      var modified_modules=JSON.stringify(ang_modules_arr);
+    this.write(app_file, file.replace(ang_modules_str, modified_modules));
+  }
+
+  
 
 
 //this.write("www/js/app.js", routes);

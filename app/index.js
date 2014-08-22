@@ -35,6 +35,11 @@ var GulpNgGenerator = yeoman.generators.Base.extend({
   },
 
   app: function () {
+
+
+//var pkg = this.dest.readJSON('package.json');
+
+
     this.mkdir('app');
     this.copy('app/_app.css', 'app/app.css');
     this.copy('app/_app.js','app/app.js');

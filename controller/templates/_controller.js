@@ -2,7 +2,7 @@
   'use strict';
 
 
-  	angular.module('myapp-main')
+  	angular.module('<%= appname %>-<%= name %>',[])
     .config(function () {
     })
     .controller('<%= name %>Ctrl', function ($scope) {
