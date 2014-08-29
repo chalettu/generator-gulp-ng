@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var plugins = require("gulp-load-plugins")({lazy:false});
 var mainBowerFiles = require('main-bower-files');
 
-var target_dir="./build";
+var target_dir="<%= output_directory %>";
 
 gulp.task('scripts', function(){
     //combine all js files of the app

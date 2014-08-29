@@ -27,9 +27,23 @@ var GulpNgGenerator = yeoman.generators.Base.extend({
 
     var prompts = [];
 
-    this.prompt(prompts, function (props) {
-      this.name = props.name;
+    var prompts = [
+    {
+      type    : 'input',
+      name: 'name',
+      message: 'What would you like the angular app to be called?',
+      default: "myapp"
+    },
+    {
+      type    : 'input',
+      name: 'output_directory',
+      message: 'Where would you like the generated html content to go?',
+      default: "./build"
+    }];
 
+    this.prompt(prompts, function (props) {
+      this.appname = props.name;
+      this.output_directory = props.output_directory;
       done();
     }.bind(this));
   },
@@ -57,7 +71,6 @@ var GulpNgGenerator = yeoman.generators.Base.extend({
     this.copy('app/main/_main_controller.js', 'app/main/main_controller.js');
     this.copy('app/main/_main_controller_test.js', 'app/main/main_controller_test.js');
   },
-
   projectfiles: function () {    
     this.copy('_bowerrc', '.bowerrc');    
     this.copy('_bower.json', 'bower.json');    
