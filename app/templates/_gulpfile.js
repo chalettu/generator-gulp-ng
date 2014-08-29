@@ -32,7 +32,7 @@ gulp.task('css', function(){
 
 gulp.task('vendorFonts',function(){
 var fontFilter = plugins.filter(['**/*.eot', '**/*.woff', '**/*.svg', '**/*.ttf']);
-  gulp.src('./bower_components/**')
+  gulp.src('./bower_components/**/fonts/**')
   .pipe(fontFilter)
   .pipe(plugins.flatten())
   .pipe(gulp.dest(target_dir+'/fonts'));
@@ -41,7 +41,7 @@ var fontFilter = plugins.filter(['**/*.eot', '**/*.woff', '**/*.svg', '**/*.ttf'
 
 gulp.task('vendorImages',function(){
 var imagesFilter = plugins.filter(['**/*.png', '**/*.jpg', '**/*.gif', '**/*.jpeg']);
-  gulp.src('./bower_components/**')
+  gulp.src(['./bower_components/**/images/**','./bower_components/**/img/**'])
   .pipe(imagesFilter)
   .pipe(plugins.flatten())
   .pipe(gulp.dest(target_dir+'/images'));
