@@ -51,7 +51,7 @@ var imagesFilter = plugins.filter(['**/*.png', '**/*.jpg', '**/*.gif', '**/*.jpe
 gulp.task('vendorJS', function(){
     //concatenate vendor JS files
     var jsFilter=plugins.filter(['*.js','!*.min.js']);
-        gulp.src(mainBowerFiles())
+        gulp.src(mainBowerFiles({"includeDev":true}))
         .pipe(jsFilter)
         .pipe(plugins.concat('lib.js'))
         .pipe(gulp.dest(target_dir+'/js'));

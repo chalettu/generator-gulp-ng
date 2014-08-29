@@ -41,6 +41,12 @@ var GulpNgGenerator = yeoman.generators.Base.extend({
       default: "./build"
     }];
 
+    //"latest"  ask them about what modules they would like to add
+
+
+
+
+
     this.prompt(prompts, function (props) {
       this.appname = props.name;
       this.output_directory = props.output_directory;
@@ -71,7 +77,8 @@ var GulpNgGenerator = yeoman.generators.Base.extend({
     this.copy('app/main/_main_controller.js', 'app/main/main_controller.js');
     this.copy('app/main/_main_controller_test.js', 'app/main/main_controller_test.js');
   },
-  projectfiles: function () {    
+  projectfiles: function () {
+    this.copy('_.jshintrc', '.jshintrc');    
     this.copy('_bowerrc', '.bowerrc');    
     this.copy('_bower.json', 'bower.json');    
     this.copy('_gulpfile.js', 'gulpfile.js');
