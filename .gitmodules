@@ -1,0 +1,3 @@
+[submodule "app/templates/gulp"]
+	path = app/templates/gulp
+	url = https://github.com/chalettu/angular-gulp.git
