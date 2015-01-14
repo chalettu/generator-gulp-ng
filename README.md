@@ -55,13 +55,15 @@ It takes advantage of the gulp build tool and makes use of bower and npm for dep
 -----
 
 #### USAGE ####
-1) npm install -g generator-gulp-ng
+1) git clone --recursive https://github.com/chalettu/generator-gulp-ng.git
 
-2) mkdir myApp && cd myApp && yo gulp-ng
+2) cd generator-gulp-ng
+
+3) npm link
+
+)  cd ../ && mkdir myApp && cd myApp && yo gulp-ng
 
 3) gulp
-
-4) karma start karma-unit.js
 
 5) open browser to http://localhost:9000
 
@@ -70,7 +72,7 @@ It takes advantage of the gulp build tool and makes use of bower and npm for dep
 ----
 
 #### Support ####
-For questions and issues: [https://github.com/henyojess/generator-gulp-ng/issues][7]
+For questions and issues: [https://github.com/chalettu/generator-gulp-ng/issues][7]
 
 
   [1]: https://docs.google.com/document/d/1XXMvReO8-Awi1EZXAXS4PzDzdNvV6pGcuaF4Q9821Es/pub
@@ -79,4 +81,3 @@ For questions and issues: [https://github.com/henyojess/generator-gulp-ng/issues
   [4]: http://bower.io/
   [5]: http://gulpjs.com/
   [6]: http://karma-runner.github.io/
-  [7]: https://github.com/henyojess/generator-gulp-ng/issues
