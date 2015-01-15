@@ -78,10 +78,11 @@ var GulpNgGenerator = yeoman.generators.Base.extend({
     this.copy('app/main/_main_controller_test.js', 'app/main/main_controller_test.js');
   },
   projectfiles: function () {
-    this.copy('_.jshintrc', '.jshintrc');    
-    this.copy('_bowerrc', '.bowerrc');    
-    this.copy('_bower.json', 'bower.json');    
+    this.copy('_.jshintrc', '.jshintrc');
+    this.copy('_bowerrc', '.bowerrc');
+    this.copy('_bower.json', 'bower.json');
     this.copy('gulp/gulpfile.js', 'gulpfile.js');
+    this.copy('gulp/config.json', 'config.json');
     this.copy('gulp/package.json', 'package.json');
     this.copy('_karma-unit.js', 'karma-unit.js');
   }
